@@ -1,0 +1,47 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int             @id @default(autoincrement())
+  email         String          @unique
+  password      String
+  name          String
+  createdAt     DateTime        @default(now())
+  
+  // Relations
+  familyMembers FamilyMember[]  @relation("OwnerToFamilyMembers")
+  memberOf      FamilyMember[]  @relation("MemberToFamilyMembers")
+  hotelBookings HotelBooking[]
+}
+
+model HotelBooking {
+  id          Int       @id @default(autoincrement())
+  hotelName   String
+  bookingDate DateTime
+  checkInDate DateTime
+  
+  // Relations
+  user     User  @relation(fields: [userId], references: [id])
+  userId   Int
+}
+
+model FamilyMember {
+  id           Int      @id @default(autoincrement())
+  relation     String
+  aadharNumber String   @unique
+  
+  // Relations
+  owner    User  @relation("OwnerToFamilyMembers", fields: [userId], references: [id])
+  userId   Int
+  
+  member   User  @relation("MemberToFamilyMembers", fields: [memberId], references: [id])
+  memberId Int
+}

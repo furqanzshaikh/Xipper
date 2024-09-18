@@ -1,0 +1,9 @@
+[
+    {
+      "id": 1,
+      "ownerId": 1,
+      "memberId": 2,
+      "relation": "Sibling",
+      "aadharNumber": "123456789012"
+    }
+  ]

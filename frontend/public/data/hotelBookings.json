@@ -1,0 +1,9 @@
+[
+    {
+      "id": 1,
+      "hotelName": "Sunset Resort",
+      "bookingDate": "2024-09-17T00:00:00Z",
+      "checkInDate": "2024-09-20T00:00:00Z",
+      "userId": 1
+    }
+  ]
