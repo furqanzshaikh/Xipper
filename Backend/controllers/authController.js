@@ -22,6 +22,7 @@ const loginSchema = Yup.object().shape({
 
 exports.register = async (req, res) => {
     const { email, password, name } = req.body;
+    console.log(email, password, name)
     
     try {
         await registrationSchema.validate({ email, password, name }, { abortEarly: false });
